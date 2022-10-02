@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>SmallWeb</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+
+        $(document).ready(function(){
+            $("#button").click(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://api.github.com/users/' + document.getElementById("gitName").value,
+                    data: { get_param: 'value' },
+                    unsuccess: function (status) {
+                        $('#alba').html(status);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1> Hello! This is a Small Web </h1>
+    <form>
+        <label for="git">Introduce your Github name:</label><br>
+        <input type="text" id="gitName" value=""><br>
+        <input type="submit" id="button" value="See user information"><br>
+    </form>
+
+    <div id="alba"></div>
+
+</body>
+</html>
