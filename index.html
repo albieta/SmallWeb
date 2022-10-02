@@ -1,16 +1,26 @@
 <html>
 <head>
     <title>SmallWeb</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
         $(document).ready(function(){
             $("#button").click(function(){
                 $.ajax({
                     type: 'GET',
-                    url: 'https://api.github.com/users/' + document.getElementById("gitName").value,
-                    data: { get_param: 'value' },
-                    unsuccess: function (status) {
-                        $('#alba').html(status);
+                    url: 'https://api.github.com/users/' + document.getElementById("gitName").value + '/repos',
+                    data: { get_param: 'value'},
+                    dataType: 'text',
+                    success: function(data){
+                        var json = $.parseJSON(data);
+                        for (var i=0;i<json.length;++i)
+                        {
+                            $('#results').append('<tr>'+
+                                '<td>'+json[i].name+'</td>'+
+                                '<td>'+json[i].description+'</td>'+
+                                '<td>'+json[i].watchers+'</td>'+
+                            '</tr>');
+                        }
+
                     }
                 });
             });
@@ -20,13 +30,15 @@
 
 <body>
     <h1> Hello! This is a Small Web </h1>
-    <form>
-        <label for="git">Introduce your Github name:</label><br>
-        <input type="text" id="gitName" value=""><br>
-        <input type="submit" id="button" value="See user information"><br>
-    </form>
-
-    <div id="alba"></div>
-
+    <label for="gitName">Introduce your Github name:</label><br>
+    <input type="text" id="gitName" value=""><br>
+    <input type="button" id="button" value="See user information"><br>
+    <table id="results"><h2>User Repositories</h2>
+        <tr>
+            <th>Repository</th>
+            <th>Description</th>
+            <th>Followers</th>
+        </tr>
+    </table>
 </body>
 </html>
