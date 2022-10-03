@@ -1,7 +1,10 @@
 <html>
 <head>
     <title>SmallWeb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
             $("#button").click(function(){
@@ -12,15 +15,16 @@
                     dataType: 'text',
                     success: function(data){
                         var json = $.parseJSON(data);
+                        $('#results').append('<tbody>');
                         for (var i=0;i<json.length;++i)
                         {
-                            $('#results').append('<tr>'+
+                            $('#results').append('<tr class="warning">'+
                                 '<td>'+json[i].name+'</td>'+
                                 '<td>'+json[i].description+'</td>'+
                                 '<td>'+json[i].watchers+'</td>'+
                             '</tr>');
                         }
-
+                        $('#results').append('</tbody>');
                     }
                 });
             });
@@ -29,16 +33,21 @@
 </head>
 
 <body>
-    <h1> Hello! This is a Small Web </h1>
+    <div class="page-header">
+        <h3> Hi there, fellas! This is a small Web xD LOL </h3>
+    </div>
     <label for="gitName">Introduce your Github name:</label><br>
-    <input type="text" id="gitName" value=""><br>
-    <input type="button" id="button" value="See user information"><br>
-    <table id="results"><h2>User Repositories</h2>
-        <tr>
-            <th>Repository</th>
-            <th>Description</th>
-            <th>Followers</th>
-        </tr>
+    <input type="text" class="form-control" id="gitName" value=""><br>
+    <input type="button" class="btn btn-block btn-warning" id="button" value="See user information"><br>
+    <h3 class="text-warning">USER REPOSITORIES</h3>
+    <table id="results" class="table table-hover table-bordered">
+        <thread>
+            <tr>
+                <th>Repository</th>
+                <th>Description</th>
+                <th>Followers</th>
+            </tr>
+        </thread>
     </table>
 </body>
 </html>
