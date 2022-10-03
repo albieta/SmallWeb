@@ -21,7 +21,7 @@
                             $('#results').append('<tr class="warning">'+
                                 '<td>'+json[i].name+'</td>'+
                                 '<td>'+json[i].description+'</td>'+
-                                '<td>'+json[i].watchers+'</td>'+
+                                '<td>'+json[i].stargazers_count+'</td>'+
                             '</tr>');
                         }
                         $('#results').append('</tbody>');
@@ -36,18 +36,22 @@
     <div class="page-header">
         <h3> Hi there, fellas! This is a small Web xD LOL </h3>
     </div>
-    <label for="gitName">Introduce your Github name:</label><br>
-    <input type="text" class="form-control" id="gitName" value=""><br>
-    <input type="button" class="btn btn-block btn-warning" id="button" value="See user information"><br>
-    <h3 class="text-warning">USER REPOSITORIES</h3>
-    <table id="results" class="table table-hover table-bordered">
-        <thread>
-            <tr>
-                <th>Repository</th>
-                <th>Description</th>
-                <th>Followers</th>
-            </tr>
-        </thread>
-    </table>
+    <div class="text-center"><b>Introduce your Github name:</b></div><br>
+    <div class="container">
+        <label for="gitName"></label><input type="text" class="form-control" id="gitName" value=""><br>
+        <input type="button" class="btn btn-block btn-warning" id="button" value="See user information"><br>
+    </div>
+    <h3 class="text-center text-warning">USER REPOSITORIES</h3>
+    <div class="container">
+        <table id="results" class="table table-hover table-bordered">
+            <thread>
+                <tr>
+                    <th>Repository</th>
+                    <th>Description</th>
+                    <th>Followers</th>
+                </tr>
+            </thread>
+        </table>
+    </div>
 </body>
 </html>
