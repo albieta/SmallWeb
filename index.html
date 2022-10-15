@@ -15,7 +15,7 @@
                     dataType: 'text',
                     success: function(data){
                         var json = $.parseJSON(data);
-                        $('#results').append('<tbody>');
+                        $('#results').empty();
                         for (var i=0;i<json.length;++i)
                         {
                             $('#results').append('<tr class="warning">'+
@@ -24,7 +24,6 @@
                                 '<td>'+json[i].stargazers_count+'</td>'+
                             '</tr>');
                         }
-                        $('#results').append('</tbody>');
                     }
                 });
             });
@@ -43,7 +42,7 @@
     </div>
     <h3 class="text-center text-warning">USER REPOSITORIES</h3>
     <div class="container">
-        <table id="results" class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered">
             <thread>
                 <tr>
                     <th>Repository</th>
@@ -51,6 +50,8 @@
                     <th>Followers</th>
                 </tr>
             </thread>
+            <tbody id="results">
+            </tbody>
         </table>
     </div>
 </body>
